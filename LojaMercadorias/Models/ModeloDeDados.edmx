@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LojaMercadoriasBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MERCADORIA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoID" Type="int" />
+          <Property Name="NegocioID" Type="int" />
+          <Property Name="NOME" Type="varchar" MaxLength="30" />
+          <Property Name="QUANTIDADE" Type="int" />
+          <Property Name="PRECO" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="TIPO_MERCADORIA">
+          <Key>
+            <PropertyRef Name="TipoID" />
+          </Key>
+          <Property Name="TipoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TIPO_NEGOCIO">
+          <Key>
+            <PropertyRef Name="NegocioID" />
+          </Key>
+          <Property Name="NegocioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK__MERCADORI__Negoc__15502E78">
+          <End Role="TIPO_NEGOCIO" Type="Self.TIPO_NEGOCIO" Multiplicity="0..1" />
+          <End Role="MERCADORIA" Type="Self.MERCADORIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_NEGOCIO">
+              <PropertyRef Name="NegocioID" />
+            </Principal>
+            <Dependent Role="MERCADORIA">
+              <PropertyRef Name="NegocioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MERCADORI__TipoI__145C0A3F">
+          <End Role="TIPO_MERCADORIA" Type="Self.TIPO_MERCADORIA" Multiplicity="0..1" />
+          <End Role="MERCADORIA" Type="Self.MERCADORIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_MERCADORIA">
+              <PropertyRef Name="TipoID" />
+            </Principal>
+            <Dependent Role="MERCADORIA">
+              <PropertyRef Name="TipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LojaMercadoriasBDModelStoreContainer">
+          <EntitySet Name="MERCADORIA" EntityType="Self.MERCADORIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_MERCADORIA" EntityType="Self.TIPO_MERCADORIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_NEGOCIO" EntityType="Self.TIPO_NEGOCIO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__MERCADORI__Negoc__15502E78" Association="Self.FK__MERCADORI__Negoc__15502E78">
+            <End Role="TIPO_NEGOCIO" EntitySet="TIPO_NEGOCIO" />
+            <End Role="MERCADORIA" EntitySet="MERCADORIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MERCADORI__TipoI__145C0A3F" Association="Self.FK__MERCADORI__TipoI__145C0A3F">
+            <End Role="TIPO_MERCADORIA" EntitySet="TIPO_MERCADORIA" />
+            <End Role="MERCADORIA" EntitySet="MERCADORIA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LojaMercadoriasBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MERCADORIA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoID" Type="Int32" />
+          <Property Name="NegocioID" Type="Int32" />
+          <Property Name="NOME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="QUANTIDADE" Type="Int32" />
+          <Property Name="PRECO" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="TIPO_NEGOCIO" Relationship="Self.FK__MERCADORI__Negoc__15502E78" FromRole="MERCADORIA" ToRole="TIPO_NEGOCIO" />
+          <NavigationProperty Name="TIPO_MERCADORIA" Relationship="Self.FK__MERCADORI__TipoI__145C0A3F" FromRole="MERCADORIA" ToRole="TIPO_MERCADORIA" />
+        </EntityType>
+        <EntityType Name="TIPO_MERCADORIA">
+          <Key>
+            <PropertyRef Name="TipoID" />
+          </Key>
+          <Property Name="TipoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MERCADORIA" Relationship="Self.FK__MERCADORI__TipoI__145C0A3F" FromRole="TIPO_MERCADORIA" ToRole="MERCADORIA" />
+        </EntityType>
+        <EntityType Name="TIPO_NEGOCIO">
+          <Key>
+            <PropertyRef Name="NegocioID" />
+          </Key>
+          <Property Name="NegocioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MERCADORIA" Relationship="Self.FK__MERCADORI__Negoc__15502E78" FromRole="TIPO_NEGOCIO" ToRole="MERCADORIA" />
+        </EntityType>
+        <Association Name="FK__MERCADORI__Negoc__15502E78">
+          <End Role="TIPO_NEGOCIO" Type="Self.TIPO_NEGOCIO" Multiplicity="0..1" />
+          <End Role="MERCADORIA" Type="Self.MERCADORIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_NEGOCIO">
+              <PropertyRef Name="NegocioID" />
+            </Principal>
+            <Dependent Role="MERCADORIA">
+              <PropertyRef Name="NegocioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MERCADORI__TipoI__145C0A3F">
+          <End Role="TIPO_MERCADORIA" Type="Self.TIPO_MERCADORIA" Multiplicity="0..1" />
+          <End Role="MERCADORIA" Type="Self.MERCADORIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_MERCADORIA">
+              <PropertyRef Name="TipoID" />
+            </Principal>
+            <Dependent Role="MERCADORIA">
+              <PropertyRef Name="TipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EntidadesLojaMercadoriasBD" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MERCADORIA" EntityType="Self.MERCADORIA" />
+          <EntitySet Name="TIPO_MERCADORIA" EntityType="Self.TIPO_MERCADORIA" />
+          <EntitySet Name="TIPO_NEGOCIO" EntityType="Self.TIPO_NEGOCIO" />
+          <AssociationSet Name="FK__MERCADORI__Negoc__15502E78" Association="Self.FK__MERCADORI__Negoc__15502E78">
+            <End Role="TIPO_NEGOCIO" EntitySet="TIPO_NEGOCIO" />
+            <End Role="MERCADORIA" EntitySet="MERCADORIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MERCADORI__TipoI__145C0A3F" Association="Self.FK__MERCADORI__TipoI__145C0A3F">
+            <End Role="TIPO_MERCADORIA" EntitySet="TIPO_MERCADORIA" />
+            <End Role="MERCADORIA" EntitySet="MERCADORIA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LojaMercadoriasBDModelStoreContainer" CdmEntityContainer="EntidadesLojaMercadoriasBD">
+          <EntitySetMapping Name="MERCADORIA">
+            <EntityTypeMapping TypeName="LojaMercadoriasBDModel.MERCADORIA">
+              <MappingFragment StoreEntitySet="MERCADORIA">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TipoID" ColumnName="TipoID" />
+                <ScalarProperty Name="NegocioID" ColumnName="NegocioID" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="QUANTIDADE" ColumnName="QUANTIDADE" />
+                <ScalarProperty Name="PRECO" ColumnName="PRECO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_MERCADORIA">
+            <EntityTypeMapping TypeName="LojaMercadoriasBDModel.TIPO_MERCADORIA">
+              <MappingFragment StoreEntitySet="TIPO_MERCADORIA">
+                <ScalarProperty Name="TipoID" ColumnName="TipoID" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_NEGOCIO">
+            <EntityTypeMapping TypeName="LojaMercadoriasBDModel.TIPO_NEGOCIO">
+              <MappingFragment StoreEntitySet="TIPO_NEGOCIO">
+                <ScalarProperty Name="NegocioID" ColumnName="NegocioID" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

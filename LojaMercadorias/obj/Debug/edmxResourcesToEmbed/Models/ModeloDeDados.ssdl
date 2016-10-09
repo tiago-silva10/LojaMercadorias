@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LojaMercadoriasBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="MERCADORIA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TipoID" Type="int" />
+    <Property Name="NegocioID" Type="int" />
+    <Property Name="NOME" Type="varchar" MaxLength="30" />
+    <Property Name="QUANTIDADE" Type="int" />
+    <Property Name="PRECO" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="TIPO_MERCADORIA">
+    <Key>
+      <PropertyRef Name="TipoID" />
+    </Key>
+    <Property Name="TipoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOME" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="TIPO_NEGOCIO">
+    <Key>
+      <PropertyRef Name="NegocioID" />
+    </Key>
+    <Property Name="NegocioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOME" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK__MERCADORI__Negoc__15502E78">
+    <End Role="TIPO_NEGOCIO" Type="Self.TIPO_NEGOCIO" Multiplicity="0..1" />
+    <End Role="MERCADORIA" Type="Self.MERCADORIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_NEGOCIO">
+        <PropertyRef Name="NegocioID" />
+      </Principal>
+      <Dependent Role="MERCADORIA">
+        <PropertyRef Name="NegocioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MERCADORI__TipoI__145C0A3F">
+    <End Role="TIPO_MERCADORIA" Type="Self.TIPO_MERCADORIA" Multiplicity="0..1" />
+    <End Role="MERCADORIA" Type="Self.MERCADORIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_MERCADORIA">
+        <PropertyRef Name="TipoID" />
+      </Principal>
+      <Dependent Role="MERCADORIA">
+        <PropertyRef Name="TipoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LojaMercadoriasBDModelStoreContainer">
+    <EntitySet Name="MERCADORIA" EntityType="Self.MERCADORIA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_MERCADORIA" EntityType="Self.TIPO_MERCADORIA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_NEGOCIO" EntityType="Self.TIPO_NEGOCIO" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__MERCADORI__Negoc__15502E78" Association="Self.FK__MERCADORI__Negoc__15502E78">
+      <End Role="TIPO_NEGOCIO" EntitySet="TIPO_NEGOCIO" />
+      <End Role="MERCADORIA" EntitySet="MERCADORIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MERCADORI__TipoI__145C0A3F" Association="Self.FK__MERCADORI__TipoI__145C0A3F">
+      <End Role="TIPO_MERCADORIA" EntitySet="TIPO_MERCADORIA" />
+      <End Role="MERCADORIA" EntitySet="MERCADORIA" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

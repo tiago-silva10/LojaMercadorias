@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LojaMercadoriasBDModelStoreContainer" CdmEntityContainer="EntidadesLojaMercadoriasBD">
+    <EntitySetMapping Name="MERCADORIA">
+      <EntityTypeMapping TypeName="LojaMercadoriasBDModel.MERCADORIA">
+        <MappingFragment StoreEntitySet="MERCADORIA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TipoID" ColumnName="TipoID" />
+          <ScalarProperty Name="NegocioID" ColumnName="NegocioID" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+          <ScalarProperty Name="QUANTIDADE" ColumnName="QUANTIDADE" />
+          <ScalarProperty Name="PRECO" ColumnName="PRECO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_MERCADORIA">
+      <EntityTypeMapping TypeName="LojaMercadoriasBDModel.TIPO_MERCADORIA">
+        <MappingFragment StoreEntitySet="TIPO_MERCADORIA">
+          <ScalarProperty Name="TipoID" ColumnName="TipoID" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_NEGOCIO">
+      <EntityTypeMapping TypeName="LojaMercadoriasBDModel.TIPO_NEGOCIO">
+        <MappingFragment StoreEntitySet="TIPO_NEGOCIO">
+          <ScalarProperty Name="NegocioID" ColumnName="NegocioID" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

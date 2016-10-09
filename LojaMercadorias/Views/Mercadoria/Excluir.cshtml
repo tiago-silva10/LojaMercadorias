@@ -1,0 +1,66 @@
+﻿@model LojaMercadorias.Models.MERCADORIA
+
+@{
+    ViewBag.Title = "Excluir";
+}
+
+<h2>Excluir</h2>
+
+<h3>Você tem certeza que deseja excluir esta mercadoria?</h3>
+
+@using (Html.BeginForm("Excluir", "Mercadoria", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+        <legend>Mercadoria</legend>
+    
+        <div class="display-label">
+            <label>Nome</label>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.NOME)
+        </div>
+
+        <div class="display-label">
+             <label>Preço</label>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.PRECO)
+        </div>
+
+        <div class="display-label">
+             <label>Tipo de Mercadoria</label>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.TIPO_MERCADORIA.NOME)            
+        </div>
+
+        <div class="display-label">
+             <label>Quantidade</label>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.QUANTIDADE)
+        </div>
+
+        <div class="display-label">
+             <label>Tipo de Negócio</label>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.TIPO_NEGOCIO.NOME) 
+        </div>
+    </fieldset>
+    <p>
+        <input type="submit" value="Excluir" class="btn btn-primary" /> |
+        @Html.ActionLink("Voltar", "Index")
+    </p>
+}
+
+@section Scripts{
+    <script>
+        $("#menuMercadoria").addClass("active");
+    </script>
+}
+
+    
+

@@ -1,0 +1,69 @@
+﻿@model LojaMercadorias.Models.MERCADORIA
+
+@{
+    ViewBag.Title = "Adicionar";
+}
+
+
+<h2>Cadastre uma nova Mercadoria</h2>
+
+@using (Html.BeginForm("Adicionar", "Mercadoria", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Dados da Mercadoria</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NOME)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.NOME, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.NOME)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PRECO)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.PRECO, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PRECO)
+            @Html.ValidationMessageFor(m => m.TIPO_MERCADORIA.TipoID)
+        </div>
+
+        <div class="editor-label">
+            <label>Tipo de Mercadoria</label>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("TipoMercadoria", String.Empty)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QUANTIDADE)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.QUANTIDADE, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.QUANTIDADE)
+        </div>
+
+        <div class="editor-label">
+            <label>Tipo de Negócio</label>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IDNegocio", String.Empty)
+            @Html.ValidationMessageFor(m => m.TIPO_NEGOCIO.NegocioID)
+        </div>
+        <br />
+        <p>
+            <input type="submit" value="Cadastrar" class="btn btn-primary" />
+            @Html.ActionLink("Voltar para Lista", "Index")
+        </p>
+    </fieldset>
+}
+
+@section Scripts{
+    <script>
+        $("#menuMercadoria").addClass("active");
+    </script>
+}

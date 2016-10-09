@@ -1,0 +1,66 @@
+﻿@model LojaMercadorias.Models.MERCADORIA
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm("Editar", "Mercadoria", FormMethod.Post)) {
+    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Dados da Mercadoria</legend>
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="editor-label">
+            <label>Nome</label>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.NOME)
+        </div>
+
+        <div class="display-label">
+            <label>Preço</label>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.PRECO)
+        </div>
+
+
+        <div class="display-label">
+            <label>Tipo de Mercadoria</label>
+        </div>
+        <div class="display-field">
+            @Html.DropDownList("TipoMercadoria", String.Empty)
+        </div>
+        <br />
+        <div class="display-label">
+            <label>Quantidade</label>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.QUANTIDADE)
+        </div>
+
+        <div class="display-label">
+            <label>Tipo de Negócio</label>
+        </div>
+        <div class="display-field">
+            @Html.DropDownList("IDNegocio", String.Empty)
+        </div>
+    </fieldset>
+    <br />
+    <p>
+        <input type="submit" value="Salvar" class="btn btn-primary" /> | 
+        @Html.ActionLink("Voltar para Lista", "Index")
+    </p>
+}
+
+@section Scripts{
+    <script>
+        $("#menuMercadoria").addClass("active");
+    </script>
+}

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<LojaMercadorias.Models.MERCADORIA>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de Mercadorias Disponíveis</h2>
+
+<p>
+    @Html.ActionLink("Criar", "Adicionar", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Tipo de Mercadoria</th>
+            <th>Tipo de Negócio</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NOME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QUANTIDADE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRECO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TIPO_MERCADORIA.NOME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TIPO_NEGOCIO.NOME)                    
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.ID }) |
+                    @Html.ActionLink("Excluir", "Excluir", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        $("#menuMercadoria").addClass("active");
+    </script>
+}
