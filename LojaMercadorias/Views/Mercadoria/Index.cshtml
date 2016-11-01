@@ -39,10 +39,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.TIPO_NEGOCIO.NOME)                    
                 </td>
-                <td>
-                    @Html.ActionLink("Editar", "Editar", new { id = item.ID }) |
-                    @Html.ActionLink("Excluir", "Excluir", new { id = item.ID })
-                </td>
+                <td>@Html.ActionLink("Editar", "Editar", new { id = item.ID }, new { @class = "btn btn-primary" })</td>
+                <td>@Html.ActionLink("Excluir", "Excluir", new { id = item.ID }, new { @class = "btn btn-danger" })</td>
             </tr>
         }
     </tbody>
